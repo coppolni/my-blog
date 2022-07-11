@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>About</title>
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Russo+One&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-default techfont custom-navbar">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <!-- Bigbrand is our own class inside blog.css -->
+          <li><a class="navbar-brand bigbrand" href="{% url 'post_list' %}">My Blog</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="https://www.github.com">Github</a></li>
+          <li><a href="https://www.linkedin.com/in/nicholas-coppola-13bb9031">LinkedIn</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+          <li>
+              <a href="{% url 'post_new' %}">New Post</a>
+          </li>
+          <li>
+              <a href="{% url 'post_draft_list' %}">Drafts</a>
+          </li>
+          <li>
+              <a href="{% url 'logout' %}">Log Out</a>
+          </li>
+          <li>
+              <a>Welcome: {{user.username}}</a>
+          </li>
+          {% else %}
+          <li><a class="nav navbar-right" href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span></a></li>
+
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+<!-- style="display:block; width:100%;" -->
+    <!-- <div>
+      <div class="leftside">
+        <h1>About Nick</h1>
+        <br>
+        <p>I am a self-taught programmer. I created this blog to showcase my skills
+        in Python, HTML, CSS, and JavaScript.
+        <br>
+        <br>Please check out the Github link
+        above for more of my projects!</p>
+      </div>
+      <div class="rightside">
+        <img id="nickphoto" src="{% static "images/Profile_Photo.jpg" %}" alt="">
+      </div>
+    </div> -->
+
+    <div>
+      <div style="width: 100%">
+        <img id="nickphoto" src="{% static "images/Profile_Photo.jpg" %}" alt="">
+      </div>
+      <div class="leftside">
+        <h1>About Nick</h1>
+        <br>
+        <p>I am a self-taught programmer. I created this blog to showcase my skills
+        in Python, HTML, CSS, and JavaScript.
+        <br>
+        <br>Please check out the Github link
+        above for more of my projects!</p>
+      </div>
+    </div>
+
+  </body>
+</html>

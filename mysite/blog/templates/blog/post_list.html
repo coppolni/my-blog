@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<!-- Our own class. See blog.css -->
+<div class="centerstage">
+  <!-- Name of model and _list -->
+  {% for post in post_list %}
+  <div class="post">
+    <!-- Below Says: If you are able to click on the post.title, takes you to the post_detail page where the PK of the post detail = post.pk, where post is being returned for post in post_list -->
+    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+    <div class="date">
+      <p>Published On: {{post.published|date:"D M Y" }}</p>
+    </div>
+    <!-- If you were to like "Comments: 1/2/3..." it would take you back to the post_detail page, just like if you clicked on the title above  -->
+    <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
+
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
